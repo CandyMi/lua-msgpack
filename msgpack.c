@@ -11,17 +11,11 @@ LUAMOD_API int luaopen_lmsgpack(lua_State *L) {
   luaL_Reg msgpack_libs[] = {
     {"encode", lmsgpack_encode},
     {"decode", lmsgpack_decode},
+    {"pack", lmsgpack_encode},
+    {"unpack", lmsgpack_decode},
     {NULL, NULL}
   };
   luaL_newlib(L, msgpack_libs);
-
-  /* 兼容cmsgpack */
-  lua_newtable(L);
-  lua_pushcfunction(L, lmsgpack_encode); 
-  lua_setfield (L, -2, "pack");
-  lua_pushcfunction(L, lmsgpack_decode); 
-  lua_setfield (L, -2, "unpack");
-  lua_setfield (L, -2, "safe");
 
   /* 关联`empty_array`表 */
   lua_newtable(L);
@@ -32,4 +26,8 @@ LUAMOD_API int luaopen_lmsgpack(lua_State *L) {
   lua_pushnumber(L, 0.1);
   lua_setfield (L, -2, "version");
   return 1;
+}
+
+LUAMOD_API int luaopen_lmsgpack_safe(lua_State *L) {
+  return luaopen_lmsgpack(L);
 }
