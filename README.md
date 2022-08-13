@@ -12,6 +12,32 @@
 
 # Usage
 
-  To provide binary compatibility for `cfadmin` `lmsgpack`, delete `lmsgpack.so` under `luaclib` to use.
+```lua
+local msgpack = require "msgpack"
+```
 
+## 1. encode
 
+```lua
+local msgpack = require "msgpack"
+
+-- map
+print(msgpack.encode { a = 1, b = 2, c = 3, list = { 'a', 'b', 'c' } })
+
+-- array
+print(msgpack.decode { true, false, null, 1, 2.2, "admin", list = { 1, 2 3}, map = { a = 1} })
+```
+
+## 2. decode
+
+```lua
+require "utils"
+local msgpack = require "msgpack"
+
+var_dump(msgpack.decode('\x82\xa1a\xc2\xa1b\xc3'))
+var_dump(msgpack.decode('\x92\xc2\xc3'))
+```
+
+# LICENSE
+
+  [MIT](https://github.com/CandyMi/lua-msgpack/blob/master/LICENSE)
