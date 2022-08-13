@@ -12,6 +12,6 @@
 
 # Usage
 
-  对`cfadmin`的`msgpack`提供二进制兼容, 删除`luaclib`下的`lmsgpack.so`即可使用.
+  To provide binary compatibility for `cfadmin` `lmsgpack`, delete `lmsgpack.so` under `luaclib` to use.
 
 
