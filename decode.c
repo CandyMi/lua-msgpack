@@ -223,7 +223,7 @@ int msgpack_dec_array(lua_State *L, int level, const char *buffer, size_t bsize)
         buffer += offset; bsize -= offset;
         break;
       default:
-        if (vt <= 0x7f || vt > 0xe0) {     /* fix uint8 */
+        if (vt <= 0x7f || vt >= 0xe0) {     /* fix uint8 */
           offset = msgpack_dec_fixint(L, vt);
           buffer += offset; bsize -= offset;
           break;
@@ -326,7 +326,7 @@ int msgpack_dec_map(lua_State *L, int level, const char *buffer, size_t bsize) {
         break;
       /* 注意: 某些编程语言的`number`会转换为`str`, 但是`Lua`内则不转换. */
       default:
-        if (kt <= 0x7f || kt > 0xe0) {     /* fix uint8 */
+        if (kt <= 0x7f || kt >= 0xe0) {     /* fix uint8 */
           offset = msgpack_dec_fixint(L, kt);
           buffer += offset; bsize -= offset;
           break;
@@ -385,7 +385,7 @@ int msgpack_dec_map(lua_State *L, int level, const char *buffer, size_t bsize) {
         buffer += offset; bsize -= offset;
         break;
       default:
-        if (vt <= 0x7f || vt > 0xe0) {     /* fix uint8 */
+        if (vt <= 0x7f || vt >= 0xe0) {     /* fix uint8 */
           offset = msgpack_dec_fixint(L, vt);
           buffer += offset; bsize -= offset;
           break;
