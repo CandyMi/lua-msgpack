@@ -25,7 +25,7 @@ local msgpack = require "msgpack"
 print(msgpack.encode { a = 1, b = 2, c = 3, list = { 'a', 'b', 'c' } })
 
 -- array
-print(msgpack.decode { true, false, null, 1, 2.2, "admin", list = { 1, 2 3}, map = { a = 1} })
+print(msgpack.encode { true, false, null, 1, 2.2, "admin", list = { 1, 2 3}, map = { a = 1} })
 ```
 
 ## 2. decode
